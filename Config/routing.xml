@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="payline.notification_url" path="/payline/notification">
+        <default key="_controller">Payline\Controller\NotificationController::notificationAction</default>
+    </route>
+
+    <route id="payline.configure" path="/admin/module/payline/configure" methods="post">
+        <default key="_controller">Payline\Controller\ConfigurationController::configure</default>
+    </route>
+</routes>

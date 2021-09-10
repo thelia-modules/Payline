@@ -1,0 +1,13 @@
+{
+  "name": "tmic/payline-module",
+  "description": "Payline module for Thelia",
+  "license": "LGPL-3.0-or-later",
+  "type": "thelia-module",
+  "require": {
+    "thelia/installer": "~1.1",
+    "monext/payline-sdk": "^4.*"
+  },
+  "extra": {
+    "installer-name": "Payline"
+  }
+}
