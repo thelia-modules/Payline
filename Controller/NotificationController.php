@@ -118,6 +118,11 @@ class NotificationController extends BasePaymentModuleController
         return $resp;
     }
 
+    public function payment3x()
+    {
+        $this->getSession()->set('isPayline3x', 1);
+    }
+
     protected function getModuleCode(): string
     {
         return "Paylib";

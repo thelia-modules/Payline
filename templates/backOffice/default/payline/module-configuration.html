@@ -37,6 +37,22 @@
                             {render_form_field field="run_mode"}
                             {render_form_field field="contract_number"}
                         </div>
+                        <div class="col-md-4">
+                            <p class="title title-without-tabs">{intl d='payline.bo.default' l="Payment configuration"}</p>
+
+                            {render_form_field field="allowed_ip_list"}
+                            {render_form_field field="minimum_amount"}
+                            {render_form_field field="maximum_amount"}
+                            {render_form_field field="send_confirmation_message_only_if_paid"}
+                        </div>
+
+                        <div class="col-md-4">
+                            <p class="title title-without-tabs">{intl d='payline.bo.default' l="Payment 3X configuration"}</p>
+
+                            {render_form_field field="activate_payment_3x"}
+                            {render_form_field field="minimum_amount_3x"}
+                            {render_form_field field="maximum_amount_3x"}
+                        </div>
                     </div>
                 </form>
                 {/form}
