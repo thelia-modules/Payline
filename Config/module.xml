@@ -4,16 +4,16 @@
         xsi:schemaLocation="http://thelia.net/schema/dic/module http://thelia.net/schema/dic/module/module-2_2.xsd">
     <fullnamespace>Payline\Payline</fullnamespace>
     <descriptive locale="en_US">
-        <title>Payline paymenet module (EUR only)</title>
+        <title>Payline paymenet module</title>
     </descriptive>
     <descriptive locale="fr_FR">
-        <title>Module de paiement Payline (EUR uniquement)</title>
+        <title>Module de paiement Payline</title>
     </descriptive>
     <languages>
         <language>en_US</language>
         <language>fr_FR</language>
     </languages>
-    <version>0.5.0</version>
+    <version>0.5.1</version>
     <authors>
         <author>
             <name>Franck Allimant</name>

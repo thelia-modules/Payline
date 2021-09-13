@@ -61,11 +61,13 @@ class SendConfirmationEmail extends BaseAction implements EventSubscriberInterfa
      */
     public function sendConfirmationEmail(OrderEvent $event)
     {
-        // We send the order confirmation email only if the order is paid
-        $order = $event->getOrder();
+        if (Payline::getConfigValue(Payline::SEND_CONFIRMATION_MESSAGE_ONLY_IF_PAID, true)) {
+            // We send the order confirmation email only if the order is paid
+            $order = $event->getOrder();
 
-        if (! $order->isPaid() && $order->getPaymentModuleId() == Payline::getModuleId()) {
-            $event->stopPropagation();
+            if (!$order->isPaid() && $order->getPaymentModuleId() == Payline::getModuleId()) {
+                $event->stopPropagation();
+            }
         }
     }
 

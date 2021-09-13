@@ -1,0 +1,27 @@
+<li class="list-group-item text-left" id="payline_payment_3x" hidden>
+    <label for="payment_{$paylineId}_3x">
+        <input type="radio" name="thelia_order_payment[payment-module]" id="payment_{$paylineId}_3x" value="{$paylineId}">
+        {intl l="Payline payment en 3 fois" d="payline.bo.default"}
+    </label>
+</li>
+
+<script>
+    (function ($) {
+        const normalPaymentInput = $('#payment_{$paylineId}');
+        const Payment3xInput = $('#payline_payment_3x');
+
+        if (normalPaymentInput !== undefined){
+            Payment3xInput.insertAfter(normalPaymentInput.parent().parent())
+            Payment3xInput.show()
+        }
+
+        $('#form-cart-payment').submit(function (){
+            if ($('#payment_{$paylineId}_3x').is(':checked')){
+                $.ajax({
+                    type: "POST",
+                    url: "{url path="/payline/payment3x"}"
+                })
+            }
+        })
+    })(jQuery)
+</script>

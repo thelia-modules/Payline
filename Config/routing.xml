@@ -11,4 +11,8 @@
     <route id="payline.configure" path="/admin/module/payline/configure" methods="post">
         <default key="_controller">Payline\Controller\ConfigurationController::configure</default>
     </route>
+
+    <route id="payline.payment3x" path="/payline/payment3x" methods="post">
+        <default key="_controller">Payline\Controller\NotificationController::payment3x</default>
+    </route>
 </routes>
