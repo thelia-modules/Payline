@@ -5,7 +5,7 @@
   "type": "thelia-module",
   "require": {
     "thelia/installer": "~1.1",
-    "monext/payline-sdk": "^4.*"
+    "monext/payline-sdk": "4.*"
   },
   "extra": {
     "installer-name": "Payline"
