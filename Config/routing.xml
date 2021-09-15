@@ -8,6 +8,10 @@
         <default key="_controller">Payline\Controller\NotificationController::notificationAction</default>
     </route>
 
+    <route id="payline.return_url" path="/payline/return">
+        <default key="_controller">Payline\Controller\NotificationController::analyzePaymentReturnAction</default>
+    </route>
+
     <route id="payline.configure" path="/admin/module/payline/configure" methods="post">
         <default key="_controller">Payline\Controller\ConfigurationController::configure</default>
     </route>

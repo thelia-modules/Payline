@@ -89,8 +89,9 @@ class Payline extends AbstractPaymentModule
     {
         $payline3x = $this->getRequest()->getSession()->get('isPayline3x');
         $this->getRequest()->getSession()->remove('isPayline3x');
+
         // check if the configuration is valid
-        if(!$this->checkValidConfiguration()){
+        if (!$this->checkValidConfiguration()) {
             return new RedirectResponse(
                 $this->getPaymentFailurePageUrl(
                     $order->getId(),
@@ -116,9 +117,8 @@ class Payline extends AbstractPaymentModule
         $doWebPaymentRequest = [];
 
         $doWebPaymentRequest['cancelURL'] = $this->getPaymentFailurePageUrl($order->getId(), "Vous avez annulé le paiement");
-        $doWebPaymentRequest['returnURL'] = $this->getPaymentSuccessPageUrl($order->getId());
-        $doWebPaymentRequest['notificationURL'] =
-            URL::getInstance()->absoluteUrl('/payline/notification');
+        $doWebPaymentRequest['returnURL'] = URL::getInstance()->absoluteUrl('/payline/return');
+        $doWebPaymentRequest['notificationURL'] = URL::getInstance()->absoluteUrl('/payline/notification');
 
         $totalAmount = round(100 * $order->getTotalAmount());
 
@@ -128,7 +128,7 @@ class Payline extends AbstractPaymentModule
         $doWebPaymentRequest['payment']['action'] = 101; // 101 stand for "authorization+capture"
         $doWebPaymentRequest['payment']['mode'] = 'CPT'; // one shot payment
 
-        if ($payline3x){
+        if ($payline3x) {
             $doWebPaymentRequest['payment']['mode'] = 'NX';
             $doWebPaymentRequest['recurring']['firstAmount'] = floor($totalAmount/3) + ($totalAmount % 3);
             $doWebPaymentRequest['recurring']['amount'] = floor($totalAmount/3);
@@ -164,14 +164,15 @@ class Payline extends AbstractPaymentModule
     public function isValidPayment()
     {
         // check if the configuration is valid
-        if(!$this->checkValidConfiguration()){
+        if (!$this->checkValidConfiguration()) {
             Tlog::getInstance()->error('The configuration in module Payline is invalid');
             return false;
         }
 
         $mode = self::getConfigValue(Payline::MODE);
         $valid = false;
-        if ($mode === 'TEST'){
+
+        if ($mode === 'TEST') {
             $raw_ips = explode("\n", self::getConfigValue(self::ALLOWED_IP_LIST, ''));
             $allowed_client_ips = array();
 
@@ -188,7 +189,8 @@ class Payline extends AbstractPaymentModule
             // Check if total order amount is in the module's limits
             $valid = $this->checkMinMaxAmount(self::MINIMUM_AMOUNT, self::MAXIMUM_AMOUNT);
         }
-        if (Payline::getConfigValue(Payline::ACTIVATE_PAYMENT_3X)){
+
+        if (Payline::getConfigValue(Payline::ACTIVATE_PAYMENT_3X)) {
             $this->getRequest()->getSession()->set('ValidPayline3x', $this->checkMinMaxAmount(self::MINIMUM_AMOUNT_3X, self::MAXIMUM_AMOUNT_3X));
         }
 
@@ -202,7 +204,6 @@ class Payline extends AbstractPaymentModule
             Payline::getConfigValue(Payline::ACCESS_KEY) &&
             Payline::getConfigValue(Payline::CONTRACT_NUMBER)
         );
-
     }
 
     protected function checkMinMaxAmount($min, $max)
@@ -214,5 +215,4 @@ class Payline extends AbstractPaymentModule
 
         return $order_total > 0 && ($min_amount <= 0 || $order_total >= $min_amount) && ($max_amount <= 0 || $order_total <= $max_amount);
     }
-
 }
