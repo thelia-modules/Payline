@@ -1,6 +1,6 @@
 {
-  "name": "tmic/payline-module",
-  "description": "Payline module for Thelia",
+  "name": "thelia/payline-module",
+  "description": "Payline payment module for Thelia",
   "license": "LGPL-3.0-or-later",
   "type": "thelia-module",
   "require": {
