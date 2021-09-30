@@ -170,7 +170,7 @@ class Payline extends AbstractPaymentModule
         }
 
         $mode = self::getConfigValue(Payline::MODE);
-        $valid = false;
+        $valid = true;
 
         if ($mode === 'TEST') {
             $raw_ips = explode("\n", self::getConfigValue(self::ALLOWED_IP_LIST, ''));
